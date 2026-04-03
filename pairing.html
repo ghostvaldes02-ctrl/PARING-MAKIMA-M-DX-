@@ -11,6 +11,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             background: #0a0005;
             color: #f0eef2;
@@ -20,10 +21,12 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
+
         .perspective-wrapper {
             perspective: 1200px;
             transform-style: preserve-3d;
         }
+
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -32,6 +35,7 @@
             transform: translateZ(30px);
             transition: transform 0.2s ease-out;
         }
+
         .bg-3d {
             position: fixed;
             top: 0;
@@ -43,6 +47,7 @@
             transition: transform 0.15s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             will-change: transform;
         }
+
         .bg-3d::before {
             content: "";
             position: absolute;
@@ -53,6 +58,7 @@
             background: radial-gradient(circle at 30% 10%, #ff2a6d20, #0a0005 80%);
             opacity: 0.8;
         }
+
         .bg-3d::after {
             content: "";
             position: absolute;
@@ -63,6 +69,7 @@
             background: repeating-linear-gradient(45deg, #ff2a6d08 0px, #ff2a6d08 2px, transparent 2px, transparent 8px);
             pointer-events: none;
         }
+
         body::after {
             content: "";
             position: fixed;
@@ -74,6 +81,7 @@
             opacity: 0.85;
             z-index: -1;
         }
+
         nav {
             display: flex;
             justify-content: center;
@@ -81,6 +89,7 @@
             margin-bottom: 3rem;
             transform: translateZ(20px);
         }
+
         .nav-link {
             color: #ffc0e0;
             text-decoration: none;
@@ -93,6 +102,7 @@
             border: 1px solid rgba(255, 42, 109, 0.4);
             letter-spacing: 1px;
         }
+
         .nav-link:hover, .nav-link.active {
             background: #ff2a6d;
             color: #0a0005;
@@ -100,6 +110,7 @@
             box-shadow: 0 0 20px #ff2a6d, 0 12px 28px rgba(255, 42, 109, 0.4);
             border-color: transparent;
         }
+
         .glass-card {
             background: rgba(20, 8, 16, 0.75);
             backdrop-filter: blur(12px);
@@ -109,20 +120,24 @@
             box-shadow: 0 25px 45px -15px rgba(0,0,0,0.5), 0 0 0 1px rgba(255, 42, 109, 0.2), inset 0 1px 0 rgba(255,255,255,0.05);
             transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.2);
         }
+
         .glass-card:hover {
             transform: translateY(-8px) translateZ(20px) rotateX(1deg) rotateY(1deg);
             border-color: #ff2a6d;
             box-shadow: 0 30px 50px -20px rgba(255, 42, 109, 0.5), 0 0 0 2px #ff2a6d;
         }
+
         .input-group {
             margin-bottom: 1.5rem;
         }
+
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
             color: #ffa0c0;
         }
+
         input {
             width: 100%;
             padding: 0.9rem 1rem;
@@ -133,12 +148,14 @@
             font-size: 1rem;
             transition: all 0.3s;
         }
+
         input:focus {
             outline: none;
             border-color: #ff88b0;
             box-shadow: 0 0 20px rgba(255, 42, 109, 0.4);
             transform: scale(1.01);
         }
+
         button {
             background: linear-gradient(95deg, #ff2a6d, #d1004a);
             color: #0a0005;
@@ -152,11 +169,13 @@
             width: 100%;
             letter-spacing: 1px;
         }
+
         button:hover {
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 8px 25px rgba(255, 42, 109, 0.6);
             background: #ff4d8a;
         }
+
         .code-display {
             margin-top: 2rem;
             padding: 1.2rem;
@@ -166,6 +185,7 @@
             border: 1px solid #ff2a6d;
             backdrop-filter: blur(4px);
         }
+
         .code-number {
             font-size: 2.8rem;
             font-weight: bold;
@@ -175,6 +195,7 @@
             text-shadow: 0 0 12px #ff2a6d;
             word-break: break-all;
         }
+
         .copy-btn {
             background: rgba(255, 42, 109, 0.3);
             border: 1px solid #ff2a6d;
@@ -187,16 +208,19 @@
             display: inline-block;
             width: auto;
         }
+
         .copy-btn:hover {
             background: #ff2a6d;
             color: #0a0005;
             transform: scale(1.02);
         }
+
         .error {
             color: #ff88b0;
             margin-top: 1rem;
             text-align: center;
         }
+
         .loader {
             display: inline-block;
             width: 24px;
@@ -207,9 +231,11 @@
             animation: spin 0.8s linear infinite;
             margin-right: 10px;
         }
+
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
         footer {
             text-align: center;
             margin-top: 4rem;
@@ -218,6 +244,7 @@
             font-size: 0.75rem;
             color: #ffa0c0;
         }
+
         @media (max-width: 700px) {
             body { padding: 1rem; }
             .code-number { font-size: 2rem; letter-spacing: 3px; }
@@ -232,6 +259,7 @@
             <a href="index.html" class="nav-link">Accueil</a>
             <a href="pairing.html" class="nav-link active">Connexion</a>
         </nav>
+
         <div class="glass-card">
             <h2 style="color: #ff2a6d;">Générer votre code d'appairage</h2>
             <p>Entrez votre numéro WhatsApp <strong>avec indicatif pays</strong> (ex: 237671410035)</p>
@@ -242,18 +270,19 @@
             <button id="generateBtn">Obtenir le code</button>
             <div id="resultArea"></div>
         </div>
+
         <footer>
             <p>© 2025 THE DARKNESS — MAKIMA M-DX Pairing | Rose Neon Dimension</p>
         </footer>
     </div>
 </div>
+
 <script>
-    const API_BASE_URL = 'http://95.111.252.213:19112';
+    const API_BASE_URL = 'https://makima-backend-production.up.railway.app';
     const generateBtn = document.getElementById('generateBtn');
     const phoneInput = document.getElementById('phoneNumber');
     const resultArea = document.getElementById('resultArea');
 
-    // Fonction pour copier le texte
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
             alert('Code copié dans le presse-papier');
@@ -266,7 +295,7 @@
         let rawNumber = phoneInput.value.trim();
         const cleanNumber = rawNumber.replace(/\D/g, '');
         if (cleanNumber.length < 8) {
-            resultArea.innerHTML = `<div class="error">❌ Numéro invalide (ex: 237671410035)</div>`;
+            resultArea.innerHTML = `<div class="error">Numéro invalide (ex: 237671410035)</div>`;
             return;
         }
 
@@ -276,32 +305,30 @@
             const response = await fetch(`${API_BASE_URL}/pair?number=${cleanNumber}`);
             const data = await response.json();
             if (data.code) {
-                const code = data.code; // vrai code numérique
+                const code = data.code;
                 resultArea.innerHTML = `
                     <div class="code-display">
-                        <div>✅ Code d'appairage (valable 2 minutes) :</div>
+                        <div>Code d'appairage (valable 2 minutes) :</div>
                         <div class="code-number">${code}</div>
                         <button class="copy-btn" id="copyCodeBtn">Copier le code</button>
                         <div style="font-size:0.8rem; margin-top:0.8rem;">
-                            Sur WhatsApp, vous recevrez une notification de connexion. Donc copie et colle le code<strong style="color:#ff88b0;">DARKNESS</strong>.<br>
-                            pour connecter MAKIMA M-DX.
+                            Sur WhatsApp, vous recevrez une notification avec le nom <strong>DARKNESS</strong>.<br>
+                            Saisissez ce code numérique pour connecter MAKIMA M-DX.
                         </div>
                     </div>
                 `;
-                // Attacher l'événement copie après l'ajout dans le DOM
                 document.getElementById('copyCodeBtn').addEventListener('click', () => copyToClipboard(code));
             } else if (data.error) {
-                resultArea.innerHTML = `<div class="error">❌ Erreur : ${data.error}</div>`;
+                resultArea.innerHTML = `<div class="error">Erreur : ${data.error}</div>`;
             } else {
-                resultArea.innerHTML = `<div class="error">❌ Réponse inattendue du serveur.</div>`;
+                resultArea.innerHTML = `<div class="error">Réponse inattendue du serveur.</div>`;
             }
         } catch (err) {
             console.error(err);
-            resultArea.innerHTML = `<div class="error">❌ Impossible de joindre le serveur. Vérifiez que le backend est actif.</div>`;
+            resultArea.innerHTML = `<div class="error">Impossible de joindre le serveur. Vérifiez que le backend est actif.</div>`;
         }
     });
 
-    // Effet 3D souris
     const bg = document.getElementById('bg3d');
     const container = document.getElementById('mainContainer');
     document.addEventListener('mousemove', (e) => {
