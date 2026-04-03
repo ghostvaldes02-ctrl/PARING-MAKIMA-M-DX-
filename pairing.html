@@ -1,0 +1,396 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>MAKIMA M-DX · Connexion</title>
+  <meta name="description" content="Connectez votre numéro WhatsApp à MAKIMA M-DX – authentification par code, interface rose et élégante.">
+  <style>
+    /* ========== VARIABLES (thème clair = blanc/rose) ========== */
+    :root {
+      --bg: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(0, 0, 0, 0.06);
+      --text: #1a1a2e;
+      --accent1: #ff2a6d;   /* rose vif */
+      --accent2: #ff88b0;   /* rose clair */
+      --glass-blur: 12px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      --input-bg: rgba(0, 0, 0, 0.02);
+    }
+
+    /* thème sombre : rose/blanc (fond rose, texte blanc) */
+    body.dark {
+      --bg: #1a0010;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text: #f0eef2;
+      --accent1: #ff88b0;
+      --accent2: #ffc0e0;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      --input-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--bg) 0%, #fce4ec 100%);
+      color: var(--text);
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      transition: background 0.3s ease, color 0.2s ease;
+      scroll-behavior: smooth;
+    }
+    body.dark {
+      background: linear-gradient(135deg, #1a0010 0%, #2d0020 100%);
+    }
+
+    /* ========== HEADER & NAV ========== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.3);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
+    }
+    body.dark .site-header {
+      background: rgba(0, 0, 0, 0.4);
+      border-bottom-color: rgba(255, 255, 255, 0.05);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 20px;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      opacity: 0.8;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--accent1);
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    #themeToggle {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      border-radius: 40px;
+      padding: 8px;
+      cursor: pointer;
+      color: var(--text);
+      transition: 0.2s;
+    }
+    #themeToggle:hover {
+      background: var(--accent1);
+      color: white;
+      border-color: var(--accent1);
+    }
+
+    /* ========== HERO SECTION ========== */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 0 80px;
+    }
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--glass-border);
+      border-radius: 32px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      max-width: 600px;
+      margin: 0 auto;
+      transition: transform 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-6px);
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .sub {
+      color: var(--text);
+      opacity: 0.7;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    /* ========== FORMULAIRE ========== */
+    .input-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.3px;
+    }
+    input {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--input-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 60px;
+      color: var(--text);
+      font-size: 1rem;
+      transition: all 0.2s;
+      outline: none;
+    }
+    input:focus {
+      border-color: var(--accent1);
+      box-shadow: 0 0 0 2px rgba(255, 42, 109, 0.2);
+    }
+    button {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      border: none;
+      padding: 12px 24px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 42, 109, 0.3);
+    }
+
+    /* ========== RÉSULTAT ========== */
+    .code-result {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 24px;
+      text-align: center;
+      border: 1px solid var(--glass-border);
+    }
+    .code-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      font-family: monospace;
+      letter-spacing: 6px;
+      color: var(--accent1);
+      word-break: break-all;
+    }
+    .copy-btn {
+      background: transparent;
+      border: 1px solid var(--accent1);
+      color: var(--accent1);
+      padding: 8px 16px;
+      width: auto;
+      margin-top: 12px;
+    }
+    .copy-btn:hover {
+      background: var(--accent1);
+      color: white;
+    }
+    .loader {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--glass-border);
+      border-top-color: var(--accent1);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .error-msg {
+      color: #e74c3c;
+      margin-top: 1rem;
+    }
+
+    /* ========== FOOTER ========== */
+    .site-footer {
+      border-top: 1px solid var(--glass-border);
+      padding: 32px 0;
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+      }
+      .glass-card {
+        padding: 1.5rem;
+        margin: 0 16px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      .code-number {
+        font-size: 1.8rem;
+        letter-spacing: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="nav">
+        <div class="brand">MAKIMA M-DX</div>
+        <ul class="nav-links">
+          <li><a href="#">Accueil</a></li>
+          <li><a href="#">Fonctions</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+        <div class="controls">
+          <button id="themeToggle" aria-label="Changer de thème">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero-section">
+    <div class="container">
+      <div class="glass-card">
+        <h1>Connexion sécurisée</h1>
+        <p class="sub">Entrez votre numéro WhatsApp pour recevoir un code d'appairage.</p>
+        <div class="input-group">
+          <label>Numéro WhatsApp (indicatif pays)</label>
+          <input type="tel" id="phoneNumber" placeholder="Ex: 237671410035" maxlength="15">
+        </div>
+        <button id="generateBtn">Obtenir le code d'appairage</button>
+        <div id="resultArea"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 THE DARKNESS — MAKIMA M-DX | Authentification par code</p>
+    </div>
+  </footer>
+
+  <script>
+    // ========== THÈME CLAIR / SOMBRE ==========
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    if (localStorage.getItem('makima-theme') === 'dark') {
+      body.classList.add('dark');
+    }
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      localStorage.setItem('makima-theme', body.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // ========== FONCTIONNALITÉ PAIRING ==========
+    // ⚠️ REMPLACEZ CETTE URL PAR L'URL DE VOTRE BACKEND (ex: http://95.111.252.213:19112)
+    const API_BASE_URL = 'http://95.111.252.213:19112';  // ← à modifier
+
+    const generateBtn = document.getElementById('generateBtn');
+    const phoneInput = document.getElementById('phoneNumber');
+    const resultArea = document.getElementById('resultArea');
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('✅ Code copié dans le presse-papier');
+      }).catch(() => {
+        alert('❌ Impossible de copier');
+      });
+    }
+
+    generateBtn.addEventListener('click', async () => {
+      let rawNumber = phoneInput.value.trim();
+      const cleanNumber = rawNumber.replace(/\D/g, '');
+      if (cleanNumber.length < 8) {
+        resultArea.innerHTML = `<div class="error-msg">❌ Numéro invalide (ex: 237671410035)</div>`;
+        return;
+      }
+
+      resultArea.innerHTML = `<div class="code-result"><div class="loader"></div> Génération en cours...</div>`;
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/pair?number=${cleanNumber}`);
+        const data = await response.json();
+        if (data.code) {
+          const code = data.code;
+          resultArea.innerHTML = `
+            <div class="code-result">
+              <div>✅ Code d'appairage (valable 2 minutes)</div>
+              <div class="code-number">${code}</div>
+              <button class="copy-btn" id="copyCodeBtn">📋 Copier le code</button>
+              <div style="font-size:0.8rem; margin-top:0.8rem;">
+                Sur WhatsApp, la notification apparaîtra avec le nom <strong>DARKNESS</strong>.
+              </div>
+            </div>
+          `;
+          document.getElementById('copyCodeBtn')?.addEventListener('click', () => copyToClipboard(code));
+        } else {
+          resultArea.innerHTML = `<div class="error-msg">❌ Erreur : ${data.error || 'Réponse invalide'}</div>`;
+        }
+      } catch (err) {
+        console.error(err);
+        resultArea.innerHTML = `<div class="error-msg">❌ Impossible de joindre le serveur. Vérifiez que le backend est actif.</div>`;
+      }
+    });
+  </script>
+</body>
+</html>
